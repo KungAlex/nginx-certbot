@@ -1,0 +1,1 @@
+# Docker Image for Nginx with automatic Certbot script
