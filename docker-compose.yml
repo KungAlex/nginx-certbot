@@ -11,8 +11,7 @@ services:
     image: kungalex/nginx-certbot
 
     volumes:
-      - ./sites-enabled:/etc/nginx/sites-enabled:rw
-      - ./sites-available:/etc/nginx/sites-available:rw
+      - ./sites:/etc/nginx/sites:rw
       - ./snippets:/etc/nginx/snippets/:rw
       - ./letsencrypt:/etc/letsencrypt:rw
       - ./scripts:/etc/nginx/scripts:rw

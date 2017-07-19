@@ -24,8 +24,7 @@ RUN add-apt-repository ppa:certbot/certbot -y && \
 RUN mkdir /var/www/html/.well-known
 
 # define mountable directories
-VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/sites-available", "/etc/nginx/snippets/", "/etc/letsencrypt"]
+VOLUME ["/etc/nginx/sites", "/etc/nginx/snippets/", "/etc/letsencrypt"]
 
-# add source scripts and define working directory.
-# ADD startscript.sh /etc/nginx/startscript.sh
+# define working directory.
 WORKDIR ./etc/nginx/

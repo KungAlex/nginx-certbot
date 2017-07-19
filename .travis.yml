@@ -15,4 +15,3 @@ services:
 
 script:
   - docker build -t kungalex/nginx-certbot .
-  - docker run kungalex/nginx-certbot
