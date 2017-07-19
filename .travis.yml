@@ -1,0 +1,18 @@
+---
+sudo: required
+dist: trusty
+
+language: python
+python: "2.7"
+
+
+branches:
+  only:
+    - master
+
+services:
+  - docker
+
+script:
+  - docker build -t kungalex/nginx-certbot
+  - docker run kungalex/nginx-certbot
