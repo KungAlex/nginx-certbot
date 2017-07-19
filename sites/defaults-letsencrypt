@@ -12,12 +12,12 @@
 ##
 
 # Default server configuration
-#
+
 server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
 
-	server_name auth.kungf.ooo;
+	server_name $CERTBOT_DOMAIN_PREFIX.$CERTBOT_DOMAIN;
 
 	# SSL configuration
 	#
