@@ -1,14 +1,9 @@
 #!/bin/bash
 
-
 ## Nginx logs to stdout
 tail -n 0 -f /var/log/nginx/*.log &tail -n 0 -f /var/log/nginx/*.log &
 
-## Setup for Certbot
-# TODO run certbot only on the first startup
-
 first_run () {
-    echo "first_run: create ssl certs"
     openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 
     rm /etc/nginx/sites-enabled/*
@@ -31,14 +26,23 @@ start_default () {
     service nginx restart &
 }
 
+recreate_cert () {
+echo "recreate_cert"
+certbot renew --pre-hook "service nginx stop" --post-hook "service nginx start"
+}
 
-if [ -e "/etc/ssl/certs/dhparam.pem" ]; then
+## Main
+if [ -e "/etc/ssl/certs/dhparam.pem" ] && [ -d "/etc/letsencrypt/live/auth.kungf.ooo" ]; then
 	echo "Start with ssl !"
 	start_ssl
 else
+    echo "setup certbot"
 	first_run
+	start_ssl
 fi
 
+# TODO set Cron-Job for Certbot on $CERTBOT_RENEWAL_DAYS (on host-system!)
+# TODO set $CERTBOT_ENV
 
-## TODO set Cron-Job for Certbot on $CERTBOT_RENEWAL_DAYS
+# crontab -e -> 43 6 * * * certbot renew --post-hook "systemctl reload nginx"
 sleep infinity
