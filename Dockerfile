@@ -7,7 +7,7 @@ FROM ubuntu:latest
 MAINTAINER kungalex <alexander-kleinschmidt@smail-fh-koeln.de>
 
 RUN apt-get update && apt-get upgrade -y
-RUN apt-get install software-properties-common python-software-properties -y
+RUN apt-get install apt-utils software-properties-common python-software-properties -y
 
 # install Nginx.
 RUN apt-get install -y nginx && \
