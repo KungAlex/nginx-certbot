@@ -1,0 +1,2 @@
+[server]
+echo-test-server ansible_host=XXX.XXX.XXX

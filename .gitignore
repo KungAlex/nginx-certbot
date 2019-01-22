@@ -1,3 +1,4 @@
 .idea/*
 nginx.env
-auth.kungf.ooo
+vars.yaml
+hosts

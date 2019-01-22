@@ -1,0 +1,30 @@
+version: "3"
+
+############################################################
+# Docker-Compose for Nginx-Certbot
+############################################################
+
+services:
+
+  nginx:
+    build: .
+    image: kungalex/nginx-certbot:dev-1.0
+
+    volumes:
+      - /etc/ssl/certs/dhparam.pem:/etc/ssl/certs/dhparam.pem:ro
+      - cert-data:/etc/letsencrypt:rw
+      - ./mysite.template:/etc/nginx/sites/mysite.template
+
+    env_file: nginx.env
+
+    ports:
+     - "80:80"
+     - "443:443"
+
+
+  app:
+    image: k8s.gcr.io/echoserver:1.4
+
+
+volumes:
+  cert-data:
