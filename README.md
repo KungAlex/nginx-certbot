@@ -15,7 +15,7 @@ TODO
     
       nginx:
         build: .
-        image: kungalex/nginx-certbot:dev-1.0
+        image: kungalex/nginx-certbot
     
         volumes:
           - /etc/ssl/certs/dhparam.pem:/etc/ssl/certs/dhparam.pem:ro
