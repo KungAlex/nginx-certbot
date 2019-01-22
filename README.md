@@ -43,6 +43,13 @@ TODO
 # Run
 docker-compose up
 
+# License 
+
+MIT 
+
+Copyright (c) 2019 Alexander Kleinschmidt
+
+
 
 
 
