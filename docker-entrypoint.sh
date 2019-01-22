@@ -2,11 +2,9 @@
 
 export DOLLAR='$'
 
-## Nginx logs to stdout
 tail -n 0 -f /var/log/nginx/*.log &
 
 first_run () {
-   # openssl dhparam -out /etc/ssl/certs/dhparam.pem 4096
     rm /etc/nginx/sites-enabled/*
     envsubst < /etc/nginx/sites/defaults-letsencrypt.template > /etc/nginx/sites/defaults-letsencrypt
     ln -s /etc/nginx/sites/defaults-letsencrypt /etc/nginx/sites-enabled/defaults-letsencrypt
@@ -25,7 +23,6 @@ start_ssl () {
     service nginx restart &
 }
 
-## Main
 if [ -e "/etc/nginx/sites/mysite.template" ] && [ -e "/etc/ssl/certs/dhparam.pem" ]; then
 
     if [ -d "/etc/letsencrypt/live/$CERTBOT_DOMAIN_PREFIX.$CERTBOT_DOMAIN" ]; then
