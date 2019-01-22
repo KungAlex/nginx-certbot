@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/KungAlex/ngix-certbot.svg?branch=master)](https://travis-ci.org/KungAlex/ngix-certbot)
+[![Build Status](https://travis-ci.org/KungAlex/nginx-certbot.svg?branch=master)](https://travis-ci.org/KungAlex/nginx-certbot)
 # Docker Image for Nginx with automatic Certbot script
 
 TODO
