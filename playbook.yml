@@ -53,7 +53,7 @@
       - { src: './docker-entrypoint.sh', dest: '/home/kungalex/' }
       - { src: './sites', dest: '/home/kungalex/' }
       - { src: './snippets', dest: '$HOME' }
-      - { src: './nginx.env', dest: '$HOME' }
+      - { src: './nginx.env.example', dest: '$HOME' }
       - { src: './Dockerfile', dest: '$HOME' }
       - { src: './docker-compose.yaml', dest: '$HOME' }
       - { src: './mysite.template', dest: '$HOME' }
