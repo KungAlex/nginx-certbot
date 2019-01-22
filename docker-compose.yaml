@@ -1,4 +1,4 @@
-version: "2"
+version: "3"
 
 ############################################################
 # Docker-Compose for Nginx-Certbot
@@ -13,6 +13,7 @@ services:
     volumes:
       - /etc/ssl/certs/dhparam.pem:/etc/ssl/certs/dhparam.pem:ro
       - cert-data:/etc/letsencrypt:rw
+      - ./mysite.template:/etc/nginx/sites/mysite.template
 
     env_file: nginx.env
 
@@ -20,7 +21,10 @@ services:
      - "80:80"
      - "443:443"
 
-   # command: sleep infinity
+
+  app:
+    image: k8s.gcr.io/echoserver:1.4
+
 
 volumes:
   cert-data:

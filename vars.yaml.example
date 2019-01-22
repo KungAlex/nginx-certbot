@@ -1,0 +1,5 @@
+# vars for role kungalex.secure_droplet
+user_name: <USERNAME>
+pw_hash: <PWHASH>
+github_user: <USERNAME>
+ssh_port: <PORT>

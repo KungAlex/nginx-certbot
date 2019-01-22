@@ -1,0 +1,23 @@
+---
+
+- name: Copy all Scripts and config
+  hosts: server
+  remote_user: "{{ user_name }}"
+
+  vars_files:
+    - vars.yaml
+
+  tasks:
+  - name: copy config
+    hosts: server
+    remote_user: "{{ user_name }}"
+    copy: src={{ item.src }} dest={{ item.dest }}
+    with_items:
+      - { src: './docker-entrypoint.sh', dest: '/home/kungalex/' }
+      - { src: './sites', dest: '/home/kungalex/' }
+      - { src: './snippets', dest: '$HOME' }
+      - { src: './nginx.env', dest: '$HOME' }
+      - { src: './Dockerfile', dest: '$HOME' }
+      - { src: './docker-compose.yaml', dest: '$HOME' }
+      - { src: './mysite.template', dest: '$HOME' }
+

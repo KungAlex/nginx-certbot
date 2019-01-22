@@ -1,0 +1,63 @@
+---
+##
+# Ansible playbook
+#
+
+- name: Install Ansible dependencies
+  hosts: server
+  become: yes
+  remote_user: root
+
+  gather_facts: False
+
+  tasks:
+  - name: "install python"
+    raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+
+- name: Run Playbook
+  hosts: server
+  become: yes
+  remote_user: root
+  vars_files:
+    - vars.yaml
+
+  roles:
+    - kungalex.secure_droplet
+    - kungalex.docker-role
+
+  tasks:
+  - name: 'Add user to docker group'
+    user:
+      name: "{{ user_name }}"
+      shell: /bin/bash
+      groups: docker
+      append: yes
+
+
+
+- name: Copy all Scripts and config
+  hosts: server
+  remote_user: "{{ user_name }}"
+
+  vars_files:
+    - vars.yaml
+
+  tasks:
+  - name: 'create dh params'
+    shell: openssl dhparam -out /etc/ssl/certs/dhparam.pem 4096
+  - name: copy config
+    hosts: server
+    remote_user: "{{ user_name }}"
+    copy: src={{ item.src }} dest={{ item.dest }}
+    with_items:
+      - { src: './docker-entrypoint.sh', dest: '/home/kungalex/' }
+      - { src: './sites', dest: '/home/kungalex/' }
+      - { src: './snippets', dest: '$HOME' }
+      - { src: './nginx.env', dest: '$HOME' }
+      - { src: './Dockerfile', dest: '$HOME' }
+      - { src: './docker-compose.yaml', dest: '$HOME' }
+      - { src: './mysite.template', dest: '$HOME' }
+
+
+
+

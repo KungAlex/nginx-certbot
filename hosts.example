@@ -1,0 +1,2 @@
+[server]
+echo-test-server ansible_host=206.189.59.169

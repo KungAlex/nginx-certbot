@@ -3,6 +3,7 @@
 
 ### TODO
 - clone repo to host
+- create dhparam `openssl dhparam -out /etc/ssl/certs/dhparam.pem 4096`
 - change nginx.env to your domain(ip address not allowed)
 - fix servername (TODO)
 

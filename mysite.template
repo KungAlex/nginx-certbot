@@ -2,6 +2,11 @@
 ### NGINX ###
 #############
 
+upstream app {
+    server app:8080;
+}
+
+
 server {
 
 
@@ -23,7 +28,12 @@ server {
         location / {
             # First attempt to serve request as file, then
             # as directory, then fall back to displaying a 404.
-            try_files ${DOLLAR}uri ${DOLLAR}uri/ =404;
+            #try_files ${DOLLAR}uri ${DOLLAR}uri/ =404;
+
+            proxy_set_header Host ${DOLLAR}host;
+            proxy_set_header X-Real-IP ${DOLLAR}remote_addr;
+            proxy_set_header X-Forwarded-For ${DOLLAR}proxy_add_x_forwarded_for;
+            proxy_pass http://app/;
         }
 
         location ~/.well-know {
