@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/KungAlex/ngix-certbot.svg?branch=master)](https://travis-ci.org/KungAlex/ngix-certbot)
+[![Build Status](https://travis-ci.org/KungAlex/nginx-certbot.svg?branch=master)](https://travis-ci.org/KungAlex/nginx-certbot)
 # Docker Image for Nginx with automatic Certbot script
 
 TODO
@@ -15,7 +15,7 @@ TODO
     
       nginx:
         build: .
-        image: kungalex/nginx-certbot:dev-1.0
+        image: kungalex/nginx-certbot
     
         volumes:
           - /etc/ssl/certs/dhparam.pem:/etc/ssl/certs/dhparam.pem:ro
