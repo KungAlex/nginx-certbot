@@ -8,14 +8,11 @@ services:
 
   nginx:
     build: .
-    image: kungalex/nginx-certbot
+    image: kungalex/nginx-certbot:dev-1.0
 
     volumes:
-      - ./sites:/etc/nginx/sites:rw
-      - ./snippets:/etc/nginx/snippets/:rw
-      - ./letsencrypt:/etc/letsencrypt:rw
-      - ./scripts:/etc/nginx/scripts:rw
-
+      - /etc/ssl/certs/dhparam.pem:/etc/ssl/certs/dhparam.pem:ro
+      - cert-data:/etc/letsencrypt:rw
 
     env_file: nginx.env
 
@@ -23,4 +20,7 @@ services:
      - "80:80"
      - "443:443"
 
-    command: ./scripts/startscript.sh
+   # command: sleep infinity
+
+volumes:
+  cert-data:
